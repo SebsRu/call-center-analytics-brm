@@ -83,17 +83,18 @@ PLOT_LAYOUT = dict(
 COLORS = ["#818cf8", "#f472b6", "#34d399", "#fbbf24", "#60a5fa"]
 
 # ─── DATA LOADING ────────────────────────────────────────────────────────────
-def load_data():
-    base = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
 
+def load_data():
     def safe_read(name):
-        path = os.path.join(base, "data", name)
+        path = os.path.join(DATA_DIR, name)
         try:
             df = pd.read_csv(path)
             if df.empty or len(df.columns) == 0:
                 return pd.DataFrame()
             return df
-        except Exception:
+        except Exception as e:
+            st.error(f"Error cargando {name}: {e}")
             return pd.DataFrame()
 
     return (
