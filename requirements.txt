@@ -1,0 +1,11 @@
+streamlit
+pandas
+plotly
+transformers
+torch
+openai-whisper
+huggingface_hub
+datasets
+scikit-learn
+xgboost
+prophet
